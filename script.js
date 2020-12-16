@@ -12,9 +12,9 @@ $.ajax({
       console.log(response)
   })
 
-  
-  var userInput = "spaghetti"
-  var sharedSecret = "9b993c6ff3682bd6aa125dbae448795f"
+
+  var userInput = "chicken"
+ // var sharedSecret = "9b993c6ff3682bd6aa125dbae448795f"
   var apiKey = "5768b380e9979f19a9f79e71ea2d714e";
   var queryUrl = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + userInput + "&api_key=" + apiKey + "&format=json"
   
@@ -24,7 +24,11 @@ $.ajax({
     }).then(function(response) {
         console.log(response)
     })
-  
+
+        $("##buttongoeshere").on("click", function() {
+            var userInput = $("##idforinput")
+            console.log(userInput)
+    })
   })
 
 
