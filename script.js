@@ -20,10 +20,16 @@ $(document).ready(function() {
           }).then(function(response) {
               console.log(response)
 
-              $("#recipeName).html("Food " + response.hits[0].recipe.label)
+              $("#recipeName").html("Food: " + response.hits[0].recipe.label)
+
+              var imgUrl = response.hits[0].recipe.image
+              var image = $("#image").attr("src", imgUrl);
+              $("#image").append(image) //image isn't appearing :'(
+            
+              $("#ingredients").html("Ingredients: " + response.hits[0].recipe.ingredientLines[0])//how to get all ingredients to display? 
+
           })
-          }
-      //recipeApi()
+        }
 
   //function for last.fm
     var musicApi = function() {
@@ -38,8 +44,7 @@ $(document).ready(function() {
 
               $("#songName").html("Title: " + response.results.trackmatches.track[0].name)
               $("#artistName").html("Artist: " + response.results.trackmatches.track[0].artist)
-              $("#url").html(response.results.trackmatches.track[0].url)
-              //unable to get image :(
+              $("#url").html(response.results.trackmatches.track[0].url) //unable to get image :(
             })
           }
 })
