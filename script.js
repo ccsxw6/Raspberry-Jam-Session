@@ -19,6 +19,8 @@ $(document).ready(function() {
             method: "GET"
           }).then(function(response) {
               console.log(response)
+
+              $("#recipeName).html("Food " + response.hits[0].recipe.label)
           })
           }
       //recipeApi()
@@ -33,7 +35,14 @@ $(document).ready(function() {
               method: "GET"
             }).then(function(response) {
               console.log(response)
+
+              $("#songName").html("Title: " + response.results.trackmatches.track[0].name)
+              $("#artistName").html("Artist: " + response.results.trackmatches.track[0].artist)
+              $("#url").html(response.results.trackmatches.track[0].url)
+              //unable to get image :(
             })
           }
 })
   // var sharedSecret = "9b993c6ff3682bd6aa125dbae448795f" don't know if I need this or not for last.fm
+  //maybe do a loop that loops through and created a new div for each thing you want? 
+  

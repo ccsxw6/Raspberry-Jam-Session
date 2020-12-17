@@ -1,6 +1,17 @@
 body {
     background: pink;
 }
+
 h1 {
     text-align: center;
+}
+
+#songName {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#artistName {
+    font-size: 30px;
+    font-weight: bold;
 }
