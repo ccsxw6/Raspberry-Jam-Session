@@ -1,6 +1,26 @@
 body {
     background: pink;
 }
+
 h1 {
     text-align: center;
+}
+
+.vl {
+    border-left: 6px black;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+}
+
+#songName, #recipeName {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#artistName {
+    font-size: 30px;
+    font-weight: bold;
 }
