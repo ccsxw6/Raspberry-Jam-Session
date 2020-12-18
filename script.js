@@ -2,7 +2,7 @@ $(document).ready(function() {
   
   //put this in a function? 
   $("#search-icon").on("click", function() {
-      userInput = $("#search").val()
+      userInput = $("#search").val() //global variable
       recipeApi()
       musicApi()
   })
