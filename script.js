@@ -1,12 +1,28 @@
 $(document).ready(function() {
   
+  var timesClicked = 0;
+
   //put this in a function? 
   $("#search-icon").on("click", function() {
       userInput = $("#search").val() //global variable
-      recipeApi()
-      musicApi()
-  })
-
+      timesClicked++;
+      conditionalFunction()
+    })
+    
+    var conditionalFunction = function() {
+      //put if statement in function, and call it when the button is clicked
+      if (timesClicked <= 1) { //why dis works
+        recipeApi()
+        musicApi()
+        //calls music and recipe functions when user has clicked fewer than once
+      } else {
+        prependFunction()
+        recipeApi()
+        musicApi()
+        //call a function that we create that prepends the newly clicked data
+        //this function happens when user has clicked more than once
+    }
+  }
 
   //function for edamam API
   var recipeApi = function() { 
@@ -21,6 +37,7 @@ $(document).ready(function() {
               console.log("recipe response")
               console.log(response)
 
+
               //name
               $("#recipeName").html("Food: " + response.hits[0].recipe.label)
 
@@ -33,6 +50,34 @@ $(document).ready(function() {
               var newRecipeImage = $("<img>")
               newRecipeImage.attr("src", imgUrl);
               $("#image").append(newRecipeImage) //image isn't appearing 
+              
+
+            //string interpolation thing
+            //   var newRecipe = `<div class="row">
+            //   <div class="col s12 m7">
+            //     <div class="card">
+            //       <div class="card-image">
+            //         <img src="#">${response.hits[0].recipe.image}>
+            //         <span class="card-title">${response.hits[0].recipe.label}</span>
+            //       </div>
+            //       <div class="card-content">
+            //       <p>I am a very simple card. I am good at containing small bits of information.
+            //       I am convenient because I require little markup to use effectively.</p>
+            //     </div>
+            //       <div class="card-action">
+            //         <a href="#">${response.hits[0].recipe.url}</a>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </div>`
+
+            // $("#newRecipeContainer").prepend(newRecipe)
+
+              //url for recipe
+              var recipeUrl = response.hits[0].recipe.url
+              var recipeAtag = $("<a>").attr("href", recipeUrl)
+              $("#recipeUrl").append(recipeAtag)
+              $(recipeAtag).html(recipeUrl)
 
               for (var i = 0; i < response.hits[0].recipe.ingredientLines.length; i++) {
                $("#ingredients").append("Ingredients: " + response.hits[0].recipe.ingredientLines[i] + "</br>") 
@@ -57,7 +102,13 @@ $(document).ready(function() {
                 var mbId = response.results.trackmatches.track[i].mbid
                 $("#songName").html("Title: " + response.results.trackmatches.track[i].name)
                 $("#artistName").html("Artist: " + response.results.trackmatches.track[i].artist)
-                $("#url").html(response.results.trackmatches.track[i].url) 
+                
+                //makes URL a clickable link
+                var responseUrl = response.results.trackmatches.track[i].url
+                var aTag = $("<a>").attr("href", responseUrl)
+                $("#musicUrl").append(aTag)
+                $(aTag).html(responseUrl)
+
                 break //break out da for loop
               }
             }
@@ -87,7 +138,18 @@ $(document).ready(function() {
                 })
             })
           }
+
+          var prependFunction = function() {
+            $(".wrapper").prepend(".prependWrapper")
+            //code in here to prepend info
+          }
 })
-  // var sharedSecret = "9b993c6ff3682bd6aa125dbae448795f" don't know if I need this or not for last.fm
-  //maybe do a loop that loops through and created a new div for each thing you want? 
-  
+
+//TO DO: 
+  //var sharedSecret = "9b993c6ff3682bd6aa125dbae448795f" don't know if I need this or not for last.fm
+  //modal for if userinput doesn't work - couldn't get modal to work - won't get anything without script tag, when I add the script tag, nothing else works
+  //how to clear current info if user types in something else, or append it underneath current info? 
+  //fix search button and make it work when hitting enters
+  //x button needs to clear what's in input
+  //make card elements (tab one from materialize) for music api and food api
+  //have the link on the card t
