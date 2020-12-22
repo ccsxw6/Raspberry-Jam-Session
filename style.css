@@ -1,9 +1,14 @@
+#homeLink {
+    margin-left: 25px;
+}
+
 body {
-    background-image: url("thirdpic.jpg");
+    background-image: url("images/raspberry.jpg");
 }
 
 h1 {
     text-align: center;
+    color: rgb(70, 1, 70);
 }
 
 #projectDef {
@@ -21,7 +26,14 @@ h1 {
 
 
 #recipeImage, #musicImage {
-    max-width: 200px;
-    max-height: 200px;
-    object-fit: cover;
+    max-width: 350px;
+    max-height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    width: 600px;
+    background-color: rgb(243, 236, 243);
 }

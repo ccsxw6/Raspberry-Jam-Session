@@ -14,8 +14,8 @@ $(document).ready(function() {
   $("#search").keyup(function(e){
     if(e.keyCode == 13){
     $("#search-icon").click();
-    recipeApi()
-    musicApi()
+    // recipeApi()
+    // musicApi()
     }
 });
 
@@ -48,9 +48,12 @@ $(document).ready(function() {
                     <img src="${response.hits[0].recipe.image}" id="recipeImage">
                     </div>
                   <div class="card-content">
+                    <!-- Recipe Name -->
+                    <h4>Food: </h4>
                     <span class="card-title">${response.hits[0].recipe.label}</span>
-                    <h4>Ingredients: </h4>
-                  <ul id="ingredients"></ul>
+
+                    <h5>Ingredients: </h5>
+                    <ul id="ingredients"></ul>
                 </div>
                   <div class="card-action">
                     <a href="${response.hits[0].recipe.url}">Recipe Wesbite</a>
@@ -88,9 +91,9 @@ $(document).ready(function() {
                     <img id="musicImage"> 
                     </div>
                   <div class="card-content">
-                    <h3>Title: </h3>
+                    <h4>Title: </h4>
                     <span class="card-title" id="title"></span>
-                    <h4>Artist: </h4>
+                    <h5>Artist: </h5>
                     <span class="card-title" id="artist"></span>
                 </div>
                   <div class="card-action">
@@ -160,3 +163,5 @@ $(document).ready(function() {
   // fix search button and make it work when hitting enters
   // x button needs to clear what's in input
   // get cards to line up?? The first to do, but the rest don't line up
+  // if they enter the same food again, get a different food and recipe with same name?? Might be too ambitious...
+  // NOT VERY MOBILE FRIENDLY!!!!!! Need the cards to move underneath each other? Everything else looks okay

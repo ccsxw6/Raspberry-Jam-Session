@@ -1,0 +1,26 @@
+#homeLink {
+    margin-left: 25px;
+}
+
+body {
+    background-color: rgb(240, 236, 243);
+}
+
+#main {
+    margin-top: 25px;
+}
+
+#imageDiv {
+    padding-left: 100px;
+}
+
+#chrisPic, #lambchopImg {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+
+#bio {
+    font-weight: bold;
+    font-size: x-large;
+}
