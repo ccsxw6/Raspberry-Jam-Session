@@ -1,13 +1,18 @@
 body {
-    background: pink;
+    background-image: url("thirdpic.jpg");
 }
 
 h1 {
     text-align: center;
 }
 
+#projectDef {
+    text-align: center;
+}
+
 #search { 
     border: bold;
+    background-color: white;
 }
 
 #search-icon:hover {
@@ -15,16 +20,8 @@ h1 {
 }
 
 
-#songName, #recipeName {
-    font-size: 40px;
-    font-weight: bold;
-}
-
-#artistName {
-    font-size: 30px;
-    font-weight: bold;
-}
-
-#songName, #artistName, #imageContainer, #musicUrl, #recipeName, #image, #ingredients, #recipeUrl {
-    margin-bottom: 30px;
+#recipeImage, #musicImage {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
 }

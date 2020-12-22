@@ -1,28 +1,30 @@
 $(document).ready(function() {
   
-  var timesClicked = 0;
+  //trying to get x button to clear what's in input field
+  //tried using .val, .html, setting variable to ""
+  // not working :(
+  $("#close-icon").on("click", function() {
+    var inputVal = $("#search").val()
+    inputVal.empty()
+  })
 
-  //put this in a function? 
+
+  //trying to get enter button to do search
+  //not working :(
+  $("#search").keyup(function(e){
+    if(e.keyCode == 13){
+    $("#search-icon").click();
+    recipeApi()
+    musicApi()
+    }
+});
+
+
   $("#search-icon").on("click", function() {
       userInput = $("#search").val() //global variable
-      timesClicked++;
-      conditionalFunction()
+      recipeApi()
+      musicApi()
     })
-    
-    var conditionalFunction = function() {
-      //put if statement in function, and call it when the button is clicked
-      if (timesClicked <= 1) { //why dis works
-        recipeApi()
-        musicApi()
-        //calls music and recipe functions when user has clicked fewer than once
-      } else {
-        prependFunction()
-        recipeApi()
-        musicApi()
-        //call a function that we create that prepends the newly clicked data
-        //this function happens when user has clicked more than once
-    }
-  }
 
   //function for edamam API
   var recipeApi = function() { 
@@ -36,51 +38,32 @@ $(document).ready(function() {
           }).then(function(response) {
               console.log("recipe response")
               console.log(response)
+            
 
+            // string interpolation thing
+              var newRecipe = `<div class="row">
+              <div class="col s12 m7">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="${response.hits[0].recipe.image}" id="recipeImage">
+                    </div>
+                  <div class="card-content">
+                    <span class="card-title">${response.hits[0].recipe.label}</span>
+                    <h4>Ingredients: </h4>
+                  <ul id="ingredients"></ul>
+                </div>
+                  <div class="card-action">
+                    <a href="${response.hits[0].recipe.url}">Recipe Wesbite</a>
+                  </div>
+                </div>
+              </div>
+            </div>`
 
-              //name
-              $("#recipeName").html("Food: " + response.hits[0].recipe.label)
-
-
-              //recipe image
-              var imgUrl = response.hits[0].recipe.image
-              console.log("recipe image")
-              console.log(imgUrl)
-
-              var newRecipeImage = $("<img>")
-              newRecipeImage.attr("src", imgUrl);
-              $("#image").append(newRecipeImage) //image isn't appearing 
-              
-
-            //string interpolation thing
-            //   var newRecipe = `<div class="row">
-            //   <div class="col s12 m7">
-            //     <div class="card">
-            //       <div class="card-image">
-            //         <img src="#">${response.hits[0].recipe.image}>
-            //         <span class="card-title">${response.hits[0].recipe.label}</span>
-            //       </div>
-            //       <div class="card-content">
-            //       <p>I am a very simple card. I am good at containing small bits of information.
-            //       I am convenient because I require little markup to use effectively.</p>
-            //     </div>
-            //       <div class="card-action">
-            //         <a href="#">${response.hits[0].recipe.url}</a>
-            //       </div>
-            //     </div>
-            //   </div>
-            // </div>`
-
-            // $("#newRecipeContainer").prepend(newRecipe)
-
-              //url for recipe
-              var recipeUrl = response.hits[0].recipe.url
-              var recipeAtag = $("<a>").attr("href", recipeUrl)
-              $("#recipeUrl").append(recipeAtag)
-              $(recipeAtag).html(recipeUrl)
+            $("#recipeContainer").prepend(newRecipe)
+            
 
               for (var i = 0; i < response.hits[0].recipe.ingredientLines.length; i++) {
-               $("#ingredients").append("Ingredients: " + response.hits[0].recipe.ingredientLines[i] + "</br>") 
+                $("#ingredients").append(response.hits[0].recipe.ingredientLines[i] + "</br>") 
               }
           })
         }
@@ -97,17 +80,47 @@ $(document).ready(function() {
               console.log("first music response")
               console.log(response)
 
+
+              var newMusic = `<div class="row">
+              <div class="col s12 m7">
+                <div class="card">
+                  <div class="card-image">
+                    <img id="musicImage"> 
+                    </div>
+                  <div class="card-content">
+                    <h3>Title: </h3>
+                    <span class="card-title" id="title"></span>
+                    <h4>Artist: </h4>
+                    <span class="card-title" id="artist"></span>
+                </div>
+                  <div class="card-action">
+                    <a id="music-url">Music Wesbite</a>
+                  </div>
+                </div>
+              </div>
+            </div>`
+
+            $("#artistContainer").prepend(newMusic)
+
+
+
+              //for loop to see if result has bid
               for (var i=0; i < response.results.trackmatches.track.length; i++) {
                 if (response.results.trackmatches.track[i].mbid != '') {
+
                 var mbId = response.results.trackmatches.track[i].mbid
-                $("#songName").html("Title: " + response.results.trackmatches.track[i].name)
-                $("#artistName").html("Artist: " + response.results.trackmatches.track[i].artist)
+
+                //music title
+                $("#title").append(response.results.trackmatches.track[i].name)
                 
-                //makes URL a clickable link
+
+                //music artist
+                $("#artist").append(response.results.trackmatches.track[i].artist)
+                
+                //music url
                 var responseUrl = response.results.trackmatches.track[i].url
-                var aTag = $("<a>").attr("href", responseUrl)
-                $("#musicUrl").append(aTag)
-                $(aTag).html(responseUrl)
+                var urlAtt = $("#music-url").attr("href", responseUrl)
+                $("#music-url").append(urlAtt)
 
                 break //break out da for loop
               }
@@ -115,13 +128,12 @@ $(document).ready(function() {
 
               console.log(mbId)
 
-              //instead of userinput use mbid
-
+              //using mbid to get image
               var newQueryUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=5768b380e9979f19a9f79e71ea2d714e&mbid=" + mbId + "&format=json"
                 
               console.log(newQueryUrl)
               $.ajax({
-                  url: newQueryUrl, //another url that we build with mbid
+                  url: newQueryUrl,
                   method: "GET"
                 }).then(function(response) {
                   console.log("second music response")
@@ -131,25 +143,20 @@ $(document).ready(function() {
                    var musicImage = response.track.album.image[3]
                    console.log("mbid image")
                    console.log(musicImage["#text"])
-                   var newImgtag = $("<img>")
-                   newImgtag.attr("src", musicImage["#text"])
-                   $("#imageContainer").append(newImgtag)
+
+                   $("#musicImage").attr("src", musicImage["#text"])
+                   $("#musicImage").append(musicImage)
 
                 })
             })
           }
 
-          var prependFunction = function() {
-            $(".wrapper").prepend(".prependWrapper")
-            //code in here to prepend info
-          }
 })
 
+
+
 //TO DO: 
-  //var sharedSecret = "9b993c6ff3682bd6aa125dbae448795f" don't know if I need this or not for last.fm
-  //modal for if userinput doesn't work - couldn't get modal to work - won't get anything without script tag, when I add the script tag, nothing else works
-  //how to clear current info if user types in something else, or append it underneath current info? 
-  //fix search button and make it work when hitting enters
-  //x button needs to clear what's in input
-  //make card elements (tab one from materialize) for music api and food api
-  //have the link on the card t
+  // modal for if userinput doesn't work - couldn't get modal to work - tried a bunch of stuff
+  // fix search button and make it work when hitting enters
+  // x button needs to clear what's in input
+  // get cards to line up?? The first to do, but the rest don't line up
