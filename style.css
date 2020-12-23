@@ -34,6 +34,13 @@ h1 {
 }
 
 .card {
-    width: 600px;
+    width: 100%;
+    /* min-width: 600px;
+    min-height: 600px; */
     background-color: rgb(243, 236, 243);
+}
+
+#artistContainer {
+    display: flex;
+    flex-wrap: wrap;
 }
