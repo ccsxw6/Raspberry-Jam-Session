@@ -184,6 +184,7 @@ $(document).ready(function () {
 
 
 //TO DO:
+  // background image needs to not be local
   // storing just the url of last search in history.html. Would like to store whole card, but with loops and separate api calls, wasn't able to figure it out. 
   // gotta push to an array, but idk how to get that to work on a separate html
   // User enters same food, gets a different food and recipe with same name
