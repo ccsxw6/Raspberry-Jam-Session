@@ -6,6 +6,10 @@ body {
     background-image: url("images/raspberry.jpg");
 }
 
+.modal-content { 
+    text-align: center;
+}
+
 h1 {
     text-align: center;
     color: rgb(70, 1, 70);
@@ -26,18 +30,17 @@ h1 {
 
 
 #recipeImage, #musicImage {
-    max-width: 350px;
-    max-height: 350px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
+
 .card {
-    width: 100%;
-    /* min-width: 600px;
-    min-height: 600px; */
+    width: 75%;
     background-color: rgb(243, 236, 243);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #artistContainer {

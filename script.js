@@ -5,28 +5,24 @@ $(document).ready(function () {
 
   //trying to get x button to clear what's in input field
   //tried using .val, .html, setting variable to ""
-  // not working :(
   $("#close-icon").on("click", function () {
     var inputVal = $("#search").val()
     inputVal.empty()
   })
 
 
-  //trying to get enter button to do search
-  //not working :(
-  $("#search").keyup(function (e) {
+  //enter button
+  $("#search").keypress(function (e) {
     if (e.keyCode == 13) {
+      e.preventDefault() //enter was just refreshing page, used preventDefault to get it to listen
       $("#search-icon").click();
-      // recipeApi()
-      // musicApi()
     }
   });
 
 
   $("#search-icon").on("click", function () {
-    userInput = $("#search").val() //global variable
+    userInput = $("#search").val()
     recipeApi()
-   
   })
 
   //function for edamam API
@@ -42,18 +38,22 @@ $(document).ready(function () {
       console.log("recipe response")
       console.log(response)
 
-
+      // modal 
       if (response.count === 0) {
         $('.modal').modal("open");
         return;
       }
 
+      //LOCAL STORAGE
+      // var recipeHistory = []
+      // var recipeLabel = response.hits[0].recipe.label
+      // recipeHistory.push({label: recipeLabel});
+      // localStorage.setItem("recipe history", JSON.stringify(recipeHistory));
+
       musicApi()
 
 
-      // string interpolation thing
-      //get rid of row here? 
-      // make one container to prepend cards to
+      // string interpolation
       var newRecipe =
         `<div class="card">
                   <div class="row">
@@ -71,19 +71,23 @@ $(document).ready(function () {
 
                         <h5>Ingredients: </h5>
                         <ul id="ingredients"></ul>
-                    </div>
+                      </div>
                       <div class="card-action">
                         <a href="${response.hits[0].recipe.url}">Recipe Wesbite</a>
                    </div>
                   </div>
                 </div>`
 
-      $("#recipeContainer").prepend(newRecipe)
+      $("#container").prepend(newRecipe)
 
 
       for (var i = 0; i < response.hits[0].recipe.ingredientLines.length; i++) {
         $("#ingredients").append(response.hits[0].recipe.ingredientLines[i] + "</br>")
       }
+
+      // Recipe URL Local Storage
+      localStorage.setItem("recipeUrl", JSON.stringify(response.hits[0].recipe.url));
+
     })
   }
 
@@ -98,7 +102,6 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log("first music response")
       console.log(response)
-
 
       var newMusic =
         `<div class="card">
@@ -126,27 +129,26 @@ $(document).ready(function () {
                   </div>
                 </div>`
 
-      $("#artistContainer").prepend(newMusic)
+      $("#container").prepend(newMusic)
+
 
 
 
       //for loop to see if result has bid
       for (var i = 0; i < response.results.trackmatches.track.length; i++) {
         if (response.results.trackmatches.track[i].mbid != '') {
-
           var mbId = response.results.trackmatches.track[i].mbid
-
           //music title
           $("#title").append(response.results.trackmatches.track[i].name)
-
-
           //music artist
           $("#artist").append(response.results.trackmatches.track[i].artist)
-
           //music url
           var responseUrl = response.results.trackmatches.track[i].url
           var urlAtt = $("#music-url").attr("href", responseUrl)
           $("#music-url").append(urlAtt)
+
+          //Music URL Local Storage
+          localStorage.setItem("musicUrl", JSON.stringify(response.results.trackmatches.track[i].url));
 
           break //break out da for loop
         }
@@ -181,8 +183,9 @@ $(document).ready(function () {
 
 
 
-//TO DO: 
+//TO DO:
+  // storing just the url of last search in history.html. Would like to store whole card, but with loops and separate api calls, wasn't able to figure it out. 
+  // gotta push to an array, but idk how to get that to work on a separate html
+  // User enters same food, gets a different food and recipe with same name
   // x button needs to clear what's in input
-  // if they enter the same food again, get a different food and recipe with same name?? Might be too ambitious...
-  //rearrange folders - media folder and an asset folder - all html should be in same place
-  
+ 

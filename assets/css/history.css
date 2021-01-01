@@ -1,0 +1,15 @@
+#homeLink {
+    margin-left: 25px;
+}
+
+body {
+    background-image: url("images/raspberry.jpg");
+}
+
+.card {
+    width: 50%;
+    background-color: rgb(243, 236, 243);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
