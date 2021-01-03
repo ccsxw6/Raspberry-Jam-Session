@@ -4,7 +4,7 @@ $(document).ready(function () {
   $('.modal').modal()
 
   //trying to get x button to clear what's in input field
-  //tried using .val, .html, setting variable to ""
+  //NOT WORKING
   $("#close-icon").on("click", function () {
     var inputVal = $("#search").val()
     inputVal.empty()
@@ -43,12 +43,6 @@ $(document).ready(function () {
         $('.modal').modal("open");
         return;
       }
-
-      //LOCAL STORAGE
-      // var recipeHistory = []
-      // var recipeLabel = response.hits[0].recipe.label
-      // recipeHistory.push({label: recipeLabel});
-      // localStorage.setItem("recipe history", JSON.stringify(recipeHistory));
 
       musicApi()
 
@@ -134,7 +128,7 @@ $(document).ready(function () {
 
 
 
-      //for loop to see if result has bid
+      //for loop to see if result has mbid
       for (var i = 0; i < response.results.trackmatches.track.length; i++) {
         if (response.results.trackmatches.track[i].mbid != '') {
           var mbId = response.results.trackmatches.track[i].mbid
@@ -150,7 +144,8 @@ $(document).ready(function () {
           //Music URL Local Storage
           localStorage.setItem("musicUrl", JSON.stringify(response.results.trackmatches.track[i].url));
 
-          break //break out da for loop
+          //breaking out of loop
+          break
         }
       }
 
@@ -184,7 +179,6 @@ $(document).ready(function () {
 
 
 //TO DO:
-  // background image needs to not be local
   // storing just the url of last search in history.html. Would like to store whole card, but with loops and separate api calls, wasn't able to figure it out. 
   // gotta push to an array, but idk how to get that to work on a separate html
   // User enters same food, gets a different food and recipe with same name
