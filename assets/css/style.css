@@ -28,6 +28,10 @@ h1 {
     cursor:pointer;
 }
 
+#currentCombo, #previousCombo {
+    text-align: center;
+    font-weight: bold;
+}
 
 #recipeImage, #musicImage {
     display: block;
@@ -46,4 +50,8 @@ h1 {
 #artistContainer {
     display: flex;
     flex-wrap: wrap;
+}
+
+#historyButton {
+    float: right;
 }

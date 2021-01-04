@@ -19,24 +19,16 @@ $(document).ready(function () {
     }
   });
 
+  //trying to set up different places for cards to go
+  var timesClicked = 0
 
   $("#search-icon").on("click", function () {
     userInput = $("#search").val()
+    timesClicked++
 
-    //WORKING ON GETTING DIFFERENT CARD FOR SAME USERINPUT
-    if (userInput === userInput) {
-      console.log("YO DAWG YOU GOT A DOUBLE USERINPUT WHOOOAAAA")
-      // call function that gives you a different card???
-      // OR Make the first calls a random call every time.... So that each time you click it a different combo comes up? 
-      // then we would want local storage to save everything
-      // function that loops through response and picks a random one? 
-      // how would we get each element in the card to be from the same recipe or artist? 
-    }
-
-   // else {
     recipeApi()
-    //}
   })
+
 
   //function for edamam API
   var recipeApi = function () {
@@ -85,7 +77,21 @@ $(document).ready(function () {
                   </div>
                 </div>`
 
-      $("#container").prepend(newRecipe)
+       // if times clicked is more than 1, prepend newMusic to previous-searches, clear currentSearches, and add newMusic
+        //else append newMusic to currentSearch
+
+        if (timesClicked = 1) {
+          //use $(this) somehow? 
+          // need to move what's currently in current-search to previous search, and then in else, append new user input into currentSearch
+          $("#current-search").append(newRecipe)
+        } 
+        else {
+          //need to append what is in current-search to previous searches....
+          $("#previous-searches").prepend(newRecipe)
+          $("#current-search").clear()
+          $("#current-search").prepend(newRecipe)
+        }
+
 
 
       for (var i = 0; i < response.hits[0].recipe.ingredientLines.length; i++) {
@@ -93,6 +99,7 @@ $(document).ready(function () {
       }
 
       // Recipe URL Local Storage
+      //Just do multiple of these for each thing? And then add it to card in history.js?
       localStorage.setItem("recipeUrl", JSON.stringify(response.hits[0].recipe.url));
 
     })
@@ -136,9 +143,17 @@ $(document).ready(function () {
                   </div>
                 </div>`
 
-      $("#container").prepend(newMusic)
 
-
+        // if times clicked is more than 1, prepend newMusic to previous-searches, clear currentSearches, and add newMusic
+        //else append newMusic to currentSearch
+        if (timesClicked = 1) {
+          $("#current-search").append(newMusic)
+        } 
+        else {
+          $("#current-search").clear()
+          $("#current-search").prepend(newMusic)
+          $("#previous-searches").prepend(newMusic)
+        }
 
 
       //for loop to see if result has mbid
@@ -198,5 +213,12 @@ $(document).ready(function () {
   // x button needs to clear what's in input
  
 
- // how can I get a random set of different information? And make sure they match up with loops and separate api calls...
- // create a for loop that loops through object, if response is same as previous response, make a new card? 
+ // use Math.floor(Math.random) on each api
+ // move search history button
+ // add a section between current and previous searches
+
+
+ // added a current-search and previous search row. Have cards appending to current-search
+ // can maybe leave most recent search here, rather than adding separate page? 
+
+ // Try appending current and past searches - then see if math.floor(math.random) will work with API calls - if time, do local storage latta
