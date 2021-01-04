@@ -88,7 +88,7 @@ $(document).ready(function () {
   //function for last.fm
   var musicApi = function () {
     var apiKey = "5768b380e9979f19a9f79e71ea2d714e";
-    var queryUrl = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + userInput + "&api_key=" + apiKey + "&format=json"
+    var queryUrl = "https://ws.audioscrobbler.com/2.0/?method=track.search&track=" + userInput + "&api_key=" + apiKey + "&format=json"
 
     $.ajax({
       url: queryUrl,
