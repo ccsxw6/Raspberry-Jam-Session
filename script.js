@@ -22,7 +22,20 @@ $(document).ready(function () {
 
   $("#search-icon").on("click", function () {
     userInput = $("#search").val()
+
+    //WORKING ON GETTING DIFFERENT CARD FOR SAME USERINPUT
+    if (userInput === userInput) {
+      console.log("YO DAWG YOU GOT A DOUBLE USERINPUT WHOOOAAAA")
+      // call function that gives you a different card???
+      // OR Make the first calls a random call every time.... So that each time you click it a different combo comes up? 
+      // then we would want local storage to save everything
+      // function that loops through response and picks a random one? 
+      // how would we get each element in the card to be from the same recipe or artist? 
+    }
+
+   // else {
     recipeApi()
+    //}
   })
 
   //function for edamam API
@@ -184,3 +197,6 @@ $(document).ready(function () {
   // User enters same food, gets a different food and recipe with same name
   // x button needs to clear what's in input
  
+
+ // how can I get a random set of different information? And make sure they match up with loops and separate api calls...
+ // create a for loop that loops through object, if response is same as previous response, make a new card? 
