@@ -152,7 +152,7 @@ $(document).ready(function () {
       console.log(mbId)
 
       //using mbid to get image
-      var newQueryUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=5768b380e9979f19a9f79e71ea2d714e&mbid=" + mbId + "&format=json"
+      var newQueryUrl = "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=5768b380e9979f19a9f79e71ea2d714e&mbid=" + mbId + "&format=json"
 
       console.log(newQueryUrl)
       $.ajax({
