@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
-
+  // Modal method
   $('.modal').modal()
+
 
   //trying to get x button to clear what's in input field
   //NOT WORKING
@@ -77,31 +78,15 @@ $(document).ready(function () {
                   </div>
                 </div>`
 
-       // if times clicked is more than 1, prepend newMusic to previous-searches, clear currentSearches, and add newMusic
-        //else append newMusic to currentSearch
+                $("#container").prepend(newRecipe)
 
-        if (timesClicked = 1) {
-          //use $(this) somehow? 
-          // need to move what's currently in current-search to previous search, and then in else, append new user input into currentSearch
-          $("#current-search").append(newRecipe)
-        } 
-        else {
-          //need to append what is in current-search to previous searches....
-          $("#previous-searches").prepend(newRecipe)
-          $("#current-search").clear()
-          $("#current-search").prepend(newRecipe)
-        }
-
-
-
+    
       for (var i = 0; i < response.hits[0].recipe.ingredientLines.length; i++) {
         $("#ingredients").append(response.hits[0].recipe.ingredientLines[i] + "</br>")
       }
 
       // Recipe URL Local Storage
-      //Just do multiple of these for each thing? And then add it to card in history.js?
       localStorage.setItem("recipeUrl", JSON.stringify(response.hits[0].recipe.url));
-
     })
   }
 
@@ -143,18 +128,7 @@ $(document).ready(function () {
                   </div>
                 </div>`
 
-
-        // if times clicked is more than 1, prepend newMusic to previous-searches, clear currentSearches, and add newMusic
-        //else append newMusic to currentSearch
-        if (timesClicked = 1) {
-          $("#current-search").append(newMusic)
-        } 
-        else {
-          $("#current-search").clear()
-          $("#current-search").prepend(newMusic)
-          $("#previous-searches").prepend(newMusic)
-        }
-
+        $("#container").prepend(newMusic)
 
       //for loop to see if result has mbid
       for (var i = 0; i < response.results.trackmatches.track.length; i++) {

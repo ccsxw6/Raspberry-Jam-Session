@@ -4,7 +4,9 @@
 
 body {
     background-image: url("../images/raspberry.jpg");
+    padding-bottom: 30px;
 }
+
 
 .modal-content { 
     text-align: center;
@@ -28,10 +30,6 @@ h1 {
     cursor:pointer;
 }
 
-#currentCombo, #previousCombo {
-    text-align: center;
-    font-weight: bold;
-}
 
 #recipeImage, #musicImage {
     display: block;
@@ -47,11 +45,16 @@ h1 {
     margin-right: auto;
 }
 
+hr.solid {
+    border-top: 3px solid rgb(15, 15, 15);
+  }
+  
 #artistContainer {
     display: flex;
     flex-wrap: wrap;
 }
 
 #historyButton {
-    float: right;
+    position: fixed;
+    bottom: 0;
 }

@@ -19,11 +19,10 @@
     <div class="nav-wrapper">
       <a href="index.html" id="homeLink">Home</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>Creators: </li>
         <li><a href="stanfill.html">Chris Stanfill</a></li>
-        <li><a href="">Sarah Paitz</a></li>
-        <li><a href="">Chris Bone</a></li>
-        <li><a href="">Louis Werner</a></li>
+        <li><a>Sarah Paitz</a></li>
+        <li><a>Chris Bone</a></li>
+        <li><a>Louis Werner</a></li>
       </ul>
     </div>
   </nav>
@@ -53,7 +52,7 @@
     <div class="nav-wrapper">
       <form>
         <div class="input-field">
-          <input id="search" type="search" required>
+          <input id="search" type="search" required autocomplete="off">
           <label id="search-icon" class="label-icon"><i class="material-icons">search</i></label>
           <i class="material-icons" id="close-icon">close</i> 
         </div>
@@ -61,27 +60,23 @@
     </div>
   </nav>
 
+  
+</br>
+</br>
+
+<!--Card Wrapper-->
+<div class="wrapper"> 
+  <div class="row"> 
+    <div class="col s12" id="container"></div>
+  </div>
+</div>
+
 </br>
   <!--Search History-->
   <div id="historyButton">
-    <a class="waves-effect waves-light btn-large" href="history.html">Last Search</a>
+    <a class="waves-effect waves-light btn-large" href="history.html">Click for Most Recent URLs</a>
   </div>
 
-  </br>
-  </br>
-
-  <!--Card Wrapper-->
-  <div class="wrapper"> 
-    <!-- <h5 id="currentCombo">Current Combination: </h5> -->
-    <div class="row"> Current Combination: 
-      <div class="col s12" id="current-search"></div>
-    </div>
-
-    <div class="row"> Previous Combination:
-      <!-- <h5 id="previousCombo">Previous Combinations: </h5> -->
-      <div class="col s12" id="previous-searches"></div>
-    </div>
-  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
