@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+// Changes creators to hamburger 
+$('.sidenav').sidenav();
+
 //Recipe Card
 var recipeCard =
 `<div class="card">

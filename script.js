@@ -3,19 +3,13 @@ $(document).ready(function () {
   // Modal method
   $('.modal').modal()
 
-
-  //trying to get x button to clear what's in input field
-  //NOT WORKING
-  $("#close-icon").on("click", function () {
-    var inputVal = $("#search").val()
-    inputVal.empty()
-  })
-
+  // Changes creators to hamburger 
+  $('.sidenav').sidenav();
 
   //enter button
   $("#search").keypress(function (e) {
     if (e.keyCode == 13) {
-      e.preventDefault() //enter was just refreshing page, used preventDefault to get it to listen
+      e.preventDefault() 
       $("#search-icon").click();
     }
   });
@@ -178,21 +172,3 @@ $(document).ready(function () {
 
 })
 
-
-
-//TO DO:
-  // storing just the url of last search in history.html. Would like to store whole card, but with loops and separate api calls, wasn't able to figure it out. 
-  // gotta push to an array, but idk how to get that to work on a separate html
-  // User enters same food, gets a different food and recipe with same name
-  // x button needs to clear what's in input
- 
-
- // use Math.floor(Math.random) on each api
- // move search history button
- // add a section between current and previous searches
-
-
- // added a current-search and previous search row. Have cards appending to current-search
- // can maybe leave most recent search here, rather than adding separate page? 
-
- // Try appending current and past searches - then see if math.floor(math.random) will work with API calls - if time, do local storage latta
