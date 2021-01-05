@@ -9,7 +9,7 @@ Additionally, there is a last search button that takes the user to a separate pa
 Here is a picture of the initial page. 
 ![Front-Page](assets/images/first_page.PNG)
 
-Here are two pictures of the cards the user receives after they type their food into the input field. In this case, the user typed in "chicken", and the application rendered a music card and a recipe card to along with chicken.
+Here are two pictures of the cards the user receives after they type their food into the input field. In this case, the user typed in "chicken", and the application rendered a music card and a recipe card to go along with chicken.
 
 ![First-Card](assets/images/first_card.PNG)
 
