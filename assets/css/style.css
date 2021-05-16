@@ -68,7 +68,6 @@ hr.solid {
     .container {
       width: 100%; } }
   
-  
   @media only screen and (max-width: 992px) {
     .input-field .prefix ~ input {
       width: 86%;

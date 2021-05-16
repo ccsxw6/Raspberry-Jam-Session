@@ -67,7 +67,7 @@ $(document).ready(function () {
                         <ul id="ingredients"></ul>
                       </div>
                       <div class="card-action">
-                        <a href="${response.hits[0].recipe.url}">Recipe Wesbite</a>
+                        <a href="${response.hits[0].recipe.url}" target="_blank">Recipe Wesbite</a>
                    </div>
                   </div>
                 </div>`
@@ -115,7 +115,7 @@ $(document).ready(function () {
                     <span class="card-title" id="artist"></span>
                 
                     <div class="card-action">
-                      <a id="music-url">Music Wesbite</a>
+                      <a id="music-url" target="_blank">Music Wesbite</a>
                     </div>
                     </div>
                   </div>
